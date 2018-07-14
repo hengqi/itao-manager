@@ -5,9 +5,8 @@
 <configuration>
 
 	<!-- 配置分页插件 -->
-	<!--<plugins>
-		<plugin interceptor="com.github.pagehelper.PageHelper">
-			<property name="dialect" value="mysql"/>
-		</plugin>
-	</plugins>-->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+			<!--<property name="dialect" value="mysql"/>-->
+	</plugins>
 </configuration>
