@@ -1,0 +1,10 @@
+.idea/
+*.iml
+itao-manager-dal/target/
+itao-manager-dal/*.iml
+itao-manager-mapper/target/
+itao-manager-mapper/*.iml
+itao-manager-service/target/
+itao-manager-service/*.iml
+itao-manager-web/target/
+itao-manager-web/*.iml
