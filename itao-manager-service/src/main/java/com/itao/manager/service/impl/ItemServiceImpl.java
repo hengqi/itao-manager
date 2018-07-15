@@ -67,10 +67,10 @@ public class ItemServiceImpl implements ItemService {
             throw new Exception();
         }
         //添加商品规格参数
-//        result = insertItemParamItem(itemId, itemParams);
-//        if (result.getStatus() != 200) {
-//            throw new Exception();
-//        }
+        result = insertItemParamItem(itemId, itemParams);
+        if (result.getStatus() != 200) {
+            throw new Exception();
+        }
 
         return ITaoResult.ok();
     }
