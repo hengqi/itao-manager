@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.itao.common.result.EasyUIDataGridResult;
 import com.itao.common.result.ITaoResult;
+import com.itao.integration.shard.content.ContentAPI;
 import com.itao.manager.dal.ItaoContentDO;
 import com.itao.manager.dal.ItaoContentDOExample;
 import com.itao.manager.mapper.ItaoContentDOMapper;
@@ -20,6 +21,9 @@ public class ContentServiceImpl implements ContentService {
     @Autowired
     ItaoContentDOMapper itaoContentDOMapper;
 
+    @Autowired
+    ContentAPI contentAPI;
+
     @Override
     public ITaoResult insertContent(ItaoContentDO content) {
         // 补全pojo内容
@@ -28,11 +32,12 @@ public class ContentServiceImpl implements ContentService {
         itaoContentDOMapper.insert(content);
 
         // 添加缓存同步
-//        try {
-//            HttpClientUtil.doGet(REST_BASE_URL + REST_CONTENT_SYSC_URL + content.getCategoryId());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            contentAPI.syncContent(content.getCategoryId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 如果同步失败，可以发邮件或者短信
+        }
         return ITaoResult.ok();
     }
 
